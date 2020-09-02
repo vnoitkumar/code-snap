@@ -1,5 +1,9 @@
 import React from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
+import prettier from 'prettier/standalone';
+import babylonParser from 'prettier/parser-babel';
+
+// const babylonParser = await import('prettier/parser-babel') // import when it is required
 
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/javascript/javascript');
@@ -31,9 +35,32 @@ export class StyledEditor extends React.Component {
     jsValue: DEFAULT_JS_VALUE || this.props.jsValue
   };
 
-  jsxOptions = {
-    ...DEFAULT_JSX_OPTIONS,
-    ...this.props.jsxOptions
+  componentDidMount() {
+    const jsValue = prettier.format(DEFAULT_JS_VALUE, {
+      parser: 'babel',
+      plugins: [babylonParser],
+      semi: false,
+      singleQuote: true
+    });
+    this.setState({
+      jsValue
+    });
+  }
+
+  formateCode = () => {
+    try {
+      const jsValue = prettier.format(this.state.jsValue, {
+        parser: 'babel',
+        plugins: [babylonParser],
+        semi: false,
+        singleQuote: true
+      });
+      this.setState({
+        jsValue
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   onChange = (which) => (editor, data, value) => {
@@ -43,10 +70,12 @@ export class StyledEditor extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <button onClick={this.formateCode}>Formate Code</button>
+
         <PureEditor
           name='js'
           value={this.state.jsValue}
-          options={this.jsxOptions}
+          options={DEFAULT_JSX_OPTIONS}
           onChange={this.onChange('js')}
         />
       </React.Fragment>
