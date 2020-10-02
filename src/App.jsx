@@ -38,26 +38,6 @@ function App() {
     }
   }
 
-  // function changeTheme(event) {
-  //   const theme = event?.target?.value;
-  //   theme && setTheme(theme);
-  // }
-
-  // function changeLang(event) {
-  //   const lang = event?.target?.value;
-  //   lang && setLang(lang);
-  // }
-
-  // function changeScale(event) {
-  //   const scale = event?.target?.value;
-  //   setScale(scale);
-  // }
-
-  // function handelFileNameChange(event) {
-  //   const fileName = event?.target?.value;
-  //   setFileName(fileName);
-  // }
-
   function downloadAsImg() {
     const element = document.getElementsByClassName('CodeMirror')[0];
 
