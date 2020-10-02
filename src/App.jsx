@@ -161,7 +161,7 @@ function App() {
                 placeholder='File name'
                 onChange={handelChange}
               />
-              <button onClick={downloadAsImg}>Save as .png</button>
+              <button onClick={downloadAsImg}>Save as {fileName}.png</button>
               &nbsp;
               <button onClick={resetAllControls}>Reset all settings</button>
             </div>
