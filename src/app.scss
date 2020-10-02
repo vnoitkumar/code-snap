@@ -1,0 +1,35 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #121212;
+  color: #eee;
+}
+
+a {
+  color: #eee;
+}
+
+.container-wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  .container {
+    .controls {
+      text-align: center;
+      margin-bottom: 20px;
+      :only-child {
+        margin-bottom: 20px;
+      }
+    }
+    .editor-wrapper {
+      width: 100%;
+    }
+  }
+}
